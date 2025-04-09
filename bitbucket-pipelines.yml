@@ -1,0 +1,18 @@
+image: samueldebruyn/debian-git
+
+pipelines:
+  branches:
+    develop:
+      - step:
+          script:
+            - apt-get update
+            - apt-get -qq install git-ftp
+            - git ftp push --user $dev_user --passwd $dev_pass $dev_ip
+
+
+    master:
+      - step:
+          script:
+            - apt-get update
+            - apt-get -qq install git-ftp
+            - git ftp push --user $prod_user --passwd $prod_pass $prod_ip
